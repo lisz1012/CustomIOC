@@ -19,11 +19,11 @@ public class ServiceStarter {
 		File daoDir = new File(daoPath);
 		File files[] = daoDir.listFiles();
 		List<Object> daoInstances = new ArrayList<>();
-		System.out.println("The below classes are included");
+		//System.out.println("The below classes are included");
 
 		for (File file : files) {
 			String className = daoPackage + "." + file.getName().replace(".java", "");
-			System.out.println(className);
+			//System.out.println(className);
 			Class clazz = Class.forName(className);
 			if (!clazz.isInterface() && clazz.isAnnotationPresent(Component.class)) {
 				Object daoInstance = clazz.newInstance();
@@ -39,7 +39,7 @@ public class ServiceStarter {
 		List<Object> serviceInstances = new ArrayList<>();
  		for (File file : files) {
 			String className = servicePackage + "." + file.getName().replace(".java", "");
-			System.out.println(className);
+			//System.out.println(className);
 			Class clazz = Class.forName(className);
 			if (!clazz.isInterface()) {
 				Object serviceInstance = clazz.newInstance();
@@ -50,9 +50,9 @@ public class ServiceStarter {
 
 		}
 
-		System.out.println(map);
+		/*System.out.println(map);
 		daoInstances.forEach(System.out::println);
-		serviceInstances.forEach(System.out::println);
+		serviceInstances.forEach(System.out::println);*/
 
 		serviceInstances.forEach(s -> {
 			Class clazz = s.getClass();
@@ -65,10 +65,10 @@ public class ServiceStarter {
 						Object instance = map.get(className);
 						if (instance == null) {
 							for (Object daoInstance : daoInstances) {
-								if (daoInstance.getClass() == f.getType()) {
+								/*if (daoInstance.getClass() == f.getType()) {
 									instance = map.get(daoInstance.getClass().getName());
 									break;
-								}
+								}*/
 								Class interfaces[] = daoInstance.getClass().getInterfaces();
 								for (Class infc : interfaces) {
 									if (infc == f.getType()) {
