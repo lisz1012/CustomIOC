@@ -95,5 +95,6 @@ public class ServiceStarter {
 		init();
 		StudentService studentService = get(StudentService.class);
 		studentService.save();
+		studentService.run();
 	}
 }
