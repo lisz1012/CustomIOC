@@ -13,6 +13,15 @@ import java.util.Map;
 
 public class ServiceStarter {
 	private static Map<String, Object> map = new HashMap<String, Object>();
+
+	static {
+		try {
+			init();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	private static void init() throws Exception {
 		String daoPath = "/Users/shuzheng/IdeaProjects/CustomIOC/src/main/java/dao";
 		String daoPackage = "dao";
@@ -91,8 +100,8 @@ public class ServiceStarter {
 		return (T)map.get(clazz.getName());
 	}
 
+
 	public static void main(String[] args) throws Exception {
-		init();
 		StudentService studentService = get(StudentService.class);
 		studentService.save();
 		studentService.run();
