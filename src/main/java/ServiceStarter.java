@@ -55,8 +55,6 @@ public class ServiceStarter {
 				map.put(className, serviceInstance);
 				serviceInstances.add(serviceInstance);
 			}
-
-
 		}
 
 		/*System.out.println(map);
